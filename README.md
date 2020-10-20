@@ -1,4 +1,4 @@
-# lyrically-styled
+# lyrically
 
 Screenshots - mobile: https://imgur.com/a/YKh1nMJ
 
