@@ -67,9 +67,9 @@ form button:hover {
 header {
   align-items: center;
   background-image: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-  background-repeat: none;
-  background-size: cover;
   background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -79,13 +79,14 @@ header {
 }
 
 header::after {
+  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
   content: '';
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
 header * {
@@ -102,8 +103,8 @@ ul.songs {
 }
 
 ul.songs li {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
   margin: 10px 0;
 }
@@ -128,8 +129,8 @@ ul.songs li {
 }
 
 .centered button {
-  transform: scale(1.3);
   margin: 15px;
+  transform: scale(1.3);
 }
 
 /* Responsive Design */
@@ -153,8 +154,8 @@ ul.songs li {
   }
 
   form button {
-    background-color: #e056fd;
     border: 0;
+    background-color: #e056fd;
     border-radius: 30px;
     color: #fff;
     font-size: 16px;
