@@ -1,5 +1,7 @@
 # lyrically
 
+ https://dumfoundead.github.io/lyrically/
+
 ## Application
 No more scavenging through your search engine to find the correct link to the correct lyrics of a song. With 'lyrically', this simple application will let you search by artist or title to find lyrics of any song via lyrics.ovh API!
 
