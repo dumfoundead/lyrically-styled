@@ -6,7 +6,7 @@ No more scavenging through your search engine to find the correct link to the co
 ## Screenshots
 Home Screen:
 
-![home](screenshots/1-home.jpg)
+![home](screenshots/1-home.jpg | width=200)
 
 Search:
 
