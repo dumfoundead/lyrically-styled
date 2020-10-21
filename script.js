@@ -18,7 +18,7 @@ function searchSongs(term) {
 function showData(data) {
   let output = '';
   if (!data.total) {
-    alert('Artist or title could not be found. Please try again.')
+    alert('Artist or title could not be found. Please try again.');
   } else {
     data.data.forEach(song => {
       output += `
