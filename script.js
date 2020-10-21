@@ -10,22 +10,25 @@ const more = $('#more');
 // Search by song or artist
 function searchSongs(term) {
   fetch(`${apiURL}/suggest/${term}`)
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => showData(data))
 }
 
 // Show song and artist in DOM
 function showData(data) {
   let output = '';
-
-  data.data.forEach(song => {
-    output += `
-      <li>
-        <span><strong>${song.artist.name}</strong> - ${song.title}</span>
-        <button id="getLyricsBtn" class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
-      </li>
-    `;
-  });
+  if (!data.total) {
+    output = `<span>Artist or title could not be found. Please try again.</span>`
+  } else {
+    data.data.forEach(song => {
+      output += `
+        <li>
+          <span><strong>${song.artist.name}</strong> - ${song.title}</span>
+          <button id="getLyricsBtn" class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
+        </li>
+      `;
+    });
+  }
 
   $('#result').html(`
     <ul class="songs">
@@ -46,7 +49,7 @@ function showData(data) {
 // Get prev and next results
 function getMoreSongs(url) {
   fetch(`https://cors-anywhere.herokuapp.com/${url}`)
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => showData(data));
 }
 
