@@ -18,7 +18,7 @@ function searchSongs(term) {
 function showData(data) {
   let output = '';
   if (!data.total) {
-    output = `<span>Artist or title could not be found. Please try again.</span>`
+    alert('Artist or title could not be found. Please try again.')
   } else {
     data.data.forEach(song => {
       output += `
@@ -72,7 +72,7 @@ $('header').on('submit', '#form', function(event) {
   event.preventDefault();
   const searchTerm = $('#search').val().trim();
   if(!searchTerm) {
-    alert('Please type in a search term')
+    alert('Please type in an artist or song title')
   } else {
     searchSongs(searchTerm);
   }
