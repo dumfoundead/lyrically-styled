@@ -68,6 +68,7 @@ async function getLyrics(artist, songTitle) {
   const lyrics = data.lyrics.replaceAll(/(\r\n|\r|\n)/g, '<br>');
 
   $('#result').html(`
+  <button id='backBtn' class='btn'>Back</button>
   <h2><strong>${artist}</strong> - ${songTitle}</h2>
   <span>${lyrics}</span>
   `);
