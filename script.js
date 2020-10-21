@@ -12,6 +12,10 @@ function searchSongs(term) {
   fetch(`${apiURL}/suggest/${term}`)
     .then(response => response.json())
     .then(data => showData(data))
+    .catch((error) => {
+      console.log('Error: ', error);
+      $('#js-error-message').text(`Something went wrong: ${error.message}`);
+    })
 }
 
 // Show song and artist in DOM
@@ -50,7 +54,11 @@ function showData(data) {
 function getMoreSongs(url) {
   fetch(`https://cors-anywhere.herokuapp.com/${url}`)
     .then(response => response.json())
-    .then(data => showData(data));
+    .then(data => showData(data))
+    .catch((error) => {
+      console.log('Error: ', error);
+      $('#js-error-message').text(`Something went wrong: ${error.message}`);
+    })
 }
 
 // Get lyrics for song
@@ -68,15 +76,17 @@ async function getLyrics(artist, songTitle) {
 }
 
 // Event Listeners - 'Search' button click
-$('header').on('submit', '#form', function(event) {
-  event.preventDefault();
-  const searchTerm = $('#search').val().trim();
-  if(!searchTerm) {
-    alert('Please type in an artist or song title')
-  } else {
-    searchSongs(searchTerm);
-  }
-});
+function watchForm() {
+  $('header').on('submit', '#form', function(event) {
+    event.preventDefault();
+    const searchTerm = $('#search').val().trim();
+    if(!searchTerm) {
+      alert('Please enter artist or song title');
+    } else {
+      searchSongs(searchTerm);
+    }
+  });
+} 
 
 // Event listeners - 'Get Lyrics' button click
 $('body').on('click', '#getLyricsBtn', function(event) {
@@ -87,3 +97,6 @@ $('body').on('click', '#getLyricsBtn', function(event) {
     getLyrics(artist, songTitle);
   }
 });
+
+// Ready call
+$(watchForm)
