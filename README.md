@@ -8,15 +8,15 @@ No more scavenging through your search engine to find the *correct* link to the 
 ## Screenshots
 ### Home Screen:
 
-![home](screenshots/1-home.jpg)
+![home](screenshots/1-home.png)
 
 ### Search:
 
-![search](screenshots/2-search.jpg)
+![search](screenshots/2-search.png)
 
 ### Get lyrics:
 
-![lyrics](screenshots/3-lyrics.jpg)
+![lyrics](screenshots/3-lyrics.png)
 
 ## Built with
 * HTML
