@@ -49,7 +49,7 @@ form input {
 }
 
 form button {
-  background-color: #e056fd;
+  background-color: rgb(65, 2, 80);
   border: 0;
   border-radius: 30px;
   color: #fff;
@@ -94,6 +94,7 @@ header * {
 }
 
 header h1 {
+  font-weight: 600;
   margin: 0 0 30px;
 }
 
@@ -154,13 +155,8 @@ ul.songs li {
   }
 
   form button {
-    border: 0;
-    background-color: #e056fd;
-    border-radius: 30px;
-    color: #fff;
     font-size: 16px;
     padding: 13px 30px;
-    position: absolute;
     top: 2px;
     right: 2px;
   }
