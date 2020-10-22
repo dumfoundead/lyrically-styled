@@ -91,7 +91,8 @@ function getYouTubeResults(responseJson, maxResults) {
   for (let i = 0; i < maxResults; i++){
     const link = `https://www.youtube.com/watch?v=${responseJson.items[i].id.videoId}`;
     const thumbnail = `<img src='${responseJson.items[i].snippet.thumbnails.default.url}'>`;
-};
+  };
+}
 
 function getYouTubeVideos(artist, songTitle, maxResults=1) {
   const params = {
