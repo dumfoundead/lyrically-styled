@@ -1,8 +1,8 @@
 'use strict';
 
-const youTubeApiKey = 'AIzaSyBHJsYZwa3nILNreY3v7LN2gCuBlfX_WeY';
+const youTubeApiKey = 'AIzaSyBx_rabkzza_Y5NysCw4Td1j0R9iVMGkGE';
 const lyricsApiURL = 'https://api.lyrics.ovh';
-const youTubeApiURL = 'https://www.googleapis.com/youtube/v3';
+const youTubeApiURL = 'https://www.googleapis.com/youtube/v3/search';
 
 const form = $('#form');
 const search = $('#search');
@@ -15,7 +15,7 @@ function searchSongs(term) {
     .then(response => response.json())
     .then(data => showData(data))
     .catch((error) => {
-      console.log('Error: ', error);
+      console.log('Error (line 18): ', error);
       $('#js-error-message').text(`Something went wrong: ${error.message}`);
     })
 }
@@ -35,6 +35,8 @@ function showData(data) {
       `;
     });
   }
+  
+  let currentData = 
 
   $('#result').html(`
     <ul class="songs">
@@ -58,22 +60,30 @@ function getMoreSongs(url) {
     .then(response => response.json())
     .then(data => showData(data))
     .catch((error) => {
-      console.log('Error: ', error);
+      console.log('Error (line 61): ', error);
       $('#js-error-message').text(`Something went wrong: ${error.message}`);
     })
 }
 
 // Get lyrics for song
-async function getLyrics(artist, songTitle) {
+
+/* async function getLyrics(artist, songTitle) {
   const res = await fetch(`${lyricsApiURL}/v1/${artist}/${songTitle}`);
   const data = await res.json();
-  const lyrics = data.lyrics.replaceAll(/(\r\n|\r|\n)/g, '<br>');
+  const lyrics = data.lyrics.replaceAll(/(\r\n|\r|\n)/g, '<br>'); */
 
-  $('#result').html(`
-  <button id='backBtn' class='btn'>Back</button>
-  <h2><strong>${artist}</strong> - ${songTitle}</h2>
-  <span>${lyrics}</span>
-  `);
+function getLyrics(artist, songTitle) {
+  fetch(`${lyricsApiURL}/v1/${artist}/${songTitle}`)
+  .then(res => res.json())
+  .then(data => {
+    let lyrics = data.lyrics.replaceAll(/(\r\n|\r|\n)/g, '<br>');
+
+    $('#result').html(`
+    <button id='backBtn' class='btn'>Back</button>
+    <h2><strong>${artist}</strong> - ${songTitle}</h2>
+    <span>${lyrics}</span>
+    `);
+  })
 
   $('#more').html('');
 }
@@ -87,14 +97,18 @@ function formatQueryParams(params) {
 
 // Display results for YouTube
 function getYouTubeResults(responseJson, maxResults) {
-  for (let i = 0; i < maxResults; i++){
-    const link = `https://www.youtube.com/watch?v=${responseJson.items[i].id.videoId}`;
-    const thumbnail = `<img src='${responseJson.items[i].snippet.thumbnails.default.url}'>`;
+  let id = '';
+  for (let i = 0; i < maxResults; i++) {
+    id = responseJson.items[i].id.videoId;
   };
 
-  $('#displayYouTube').html(`
-    <a href='${link}'>${thumbnail}</a>
-  `)
+  let video = `<iframe id="ytplayer" type="text/html" class="container"
+  src="https://www.youtube.com/embed/${id}?autoplay=1"
+  frameborder="0"></iframe>`;
+
+  // Autoplay not allowed on mobile devices due to unsolicited data usage
+
+  $('#displayYouTube').html(video);
 }  
 
 function getYouTubeVideos(youTubeArtist, youTubeSongTitle, maxResults=1) {
@@ -118,24 +132,27 @@ function getYouTubeVideos(youTubeArtist, youTubeSongTitle, maxResults=1) {
     })
     .then(responseJson => getYouTubeResults(responseJson, maxResults))
     .catch(err => {
+      console.log('Error (line 127): ', err);
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
     });
 }
 
-// Event Listeners - 'Search' button click
+// Event Listener - 'Search' button click
 function watchForm() {
   $('header').on('submit', '#form', function(event) {
     event.preventDefault();
     const searchTerm = $('#search').val().trim();
     if(!searchTerm) {
       alert('Please enter artist or song title');
-    } else {
+    } /*else if('#displayYouTube') {
+      $('#displayYouTube').remove();
+    }*/ else {
       searchSongs(searchTerm);
     }
   });
 } 
 
-// Event listeners - 'Get Lyrics' button click
+// Event listener - 'Get Lyrics' button click
 $('body').on('click', '#getLyricsBtn', function(event) {
   const clickedEl = event.target;
   if(clickedEl.tagName === 'BUTTON') {
@@ -147,6 +164,11 @@ $('body').on('click', '#getLyricsBtn', function(event) {
     getYouTubeVideos(youTubeArtist, youTubeSongTitle);
   }
 });
+
+// Event listener - 'Back' button click
+$('body').on('click', '#backBtn', function(event) {
+
+})
 
 // Ready call
 $(watchForm)
