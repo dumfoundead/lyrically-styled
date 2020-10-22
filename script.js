@@ -35,8 +35,6 @@ function showData(data) {
       `;
     });
   }
-  
-  let currentData = 
 
   $('#result').html(`
     <ul class="songs">
@@ -166,9 +164,8 @@ $('body').on('click', '#getLyricsBtn', function(event) {
 });
 
 // Event listener - 'Back' button click
-$('body').on('click', '#backBtn', function(event) {
+//$('body').on('click', '#backBtn', function(event) {})
 
-})
 
 // Ready call
 $(watchForm)
