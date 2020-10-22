@@ -72,7 +72,6 @@ async function getLyrics(artist, songTitle) {
   $('#result').html(`
   <button id='backBtn' class='btn'>Back</button>
   <h2><strong>${artist}</strong> - ${songTitle}</h2>
-  <span><a href='${link}' target='_blank'>${thumbnail}</a></span>
   <span>${lyrics}</span>
   `);
 
@@ -92,22 +91,24 @@ function getYouTubeResults(responseJson, maxResults) {
     const link = `https://www.youtube.com/watch?v=${responseJson.items[i].id.videoId}`;
     const thumbnail = `<img src='${responseJson.items[i].snippet.thumbnails.default.url}'>`;
   };
-}
 
-function getYouTubeVideos(artist, songTitle, maxResults=1) {
+  $('#displayYouTube').html(`
+    <a href='${link}'>${thumbnail}</a>
+  `)
+}  
+
+function getYouTubeVideos(youTubeArtist, youTubeSongTitle, maxResults=1) {
   const params = {
-    key: youTubeApiKey,
-    q: artist+songTitle,
     part: 'snippet',
     maxResults,
-    type: 'video'
+    q: youTubeArtist + ' ' + youTubeSongTitle,
+    type: 'video',
+    key: youTubeApiKey,    
   };
 
   const queryString = formatQueryParams(params)
   const url = youTubeApiURL + '?' + queryString;
-
-  console.log(url);
-
+  
   fetch(url)
     .then(response => {
       if (response.ok) {
@@ -140,8 +141,10 @@ $('body').on('click', '#getLyricsBtn', function(event) {
   if(clickedEl.tagName === 'BUTTON') {
     const artist = clickedEl.getAttribute('data-artist');
     const songTitle = clickedEl.getAttribute('data-songtitle');
+    const youTubeArtist = clickedEl.getAttribute('data-artist');
+    const youTubeSongTitle = clickedEl.getAttribute('data-songtitle');
     getLyrics(artist, songTitle);
-    getYouTubeVideos(artist, songTitle);
+    getYouTubeVideos(youTubeArtist, youTubeSongTitle);
   }
 });
 
