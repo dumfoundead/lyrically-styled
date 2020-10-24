@@ -3,7 +3,11 @@
  https://dumfoundead.github.io/lyrically/
 
 ## Application
-No more scavenging through your search engine to find the *correct* link to the *correct* lyrics of a song. With 'lyrically', this simple, easy-to-use application will let you search by artist or title to find complete lyrics of any song via lyrics.ovh API!
+Lyrically is a simple, easy-to-use application that will let you search by artist and/or song title to find complete lyrics of any song. A YouTube video will be displayed to play the song you selected. Sing along!
+
+## APIs used
+* lyrics.ovh
+* YouTube Data API v3
 
 ## Screenshots
 ### Home Screen:
