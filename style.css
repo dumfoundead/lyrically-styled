@@ -41,9 +41,9 @@ form {
 input[type='text'] {
   border: none;
   border-radius: 30px;
-  font-size: 14px;
+  font-size: 16px;
   padding: 15px 30px;
-  width: 300px;
+  width: 350px;
 }
 
 form button {
@@ -144,12 +144,12 @@ ul.songs li {
 }
 
 /* Responsive Design */
-@media all and (min-width: 600px) {
+@media all and (min-width: 800px) {
   .container {
-    max-width: 500px;
+    width: 600px;
   }  
 
   input[type='text'] {
-    width: 350px;
+    width: 500px;
   }
 }
