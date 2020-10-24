@@ -35,14 +35,14 @@ function showData(data) {
       output += `
         <li>
           <span><strong>${song.artist.name}</strong> - ${song.title}</span>
-          <button id="getLyricsBtn" class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
+          <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
         </li>
       `;
     });
   }
 
   $('#result').html(`
-    <ul class="songs">
+    <ul id="getLyricsBtn" class="songs">
       ${output}
     </ul>
   `);
@@ -107,7 +107,7 @@ function getYouTubeResults(responseJson, maxResults) {
 
   let video = `<iframe id="ytplayer" type="text/html" class="container"
   src="https://www.youtube.com/embed/${id}?autoplay=1" allow="autoplay" allowfullscreen="allowfullscreen"
-  frameborder="0" width="560" height="315"></iframe>`; 
+  frameborder="0" width="480" height="270"></iframe>`; 
   
   //Autoplay disallowed on mobile devices to prevent unsolicited data usage
   
