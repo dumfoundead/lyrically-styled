@@ -1,4 +1,4 @@
-# lyrically
+# Lyrically
 
  https://dumfoundead.github.io/lyrically/
 
