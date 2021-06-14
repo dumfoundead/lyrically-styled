@@ -60,7 +60,7 @@ function showData(data) {
 
 // Get prev and next results
 function getMoreSongs(url) {
-  fetch(`https://allow-cors-for-lyrically.herokuapp.com//${url}`)
+  fetch(`https://allow-cors-for-lyrically.herokuapp.com/${url}`)
   .then(response => response.json())
   .then(data => {
     currentData = data;
