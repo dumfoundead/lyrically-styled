@@ -60,7 +60,7 @@ function showData(data) {
 
 // Get prev and next results
 function getMoreSongs(url) {
-  fetch(`https://stormy-plateau-69142.herokuapp.com/${url}`)
+  fetch(`https://stormy-plateau-69142.herokuapp.com/${url}/allow-cors`, {mode:'cors'})
   .then(response => response.json())
   .then(data => {
     currentData = data;
