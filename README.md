@@ -1,6 +1,6 @@
 # Lyrically
 
- https://dumfoundead.github.io/lyrically/
+ https://michaeltnvu.github.io/lyrically/
 
 ## Application
 Lyrically is a simple, easy-to-use application that will let you search by artist and/or song title to find complete lyrics of any song. A YouTube video will be displayed to play the song you selected. Sing along!
